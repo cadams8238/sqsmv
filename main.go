@@ -7,6 +7,7 @@ import (
 	"sync"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/credentials/stscreds"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/sqs"
 )
@@ -15,6 +16,7 @@ func main() {
 	src := flag.String("src", "", "source queue")
 	dest := flag.String("dest", "", "destination queue")
 	clients := flag.Int("clients", 1, "number of clients")
+	mfa := flag.Bool("mfa", false, "multifactor authentication")
 	flag.Parse()
 
 	if *src == "" || *dest == "" || *clients < 1 {
@@ -25,10 +27,16 @@ func main() {
 	log.Printf("source queue : %v", *src)
 	log.Printf("destination queue : %v", *dest)
 	log.Printf("number of clients : %v", *clients)
+	log.Printf("multifactor authentication : %v", *mfa)
 
 	// enable automatic use of AWS_PROFILE like awscli and other tools do.
 	opts := session.Options{
 		SharedConfigState: session.SharedConfigEnable,
+	}
+
+	// add mfa to options if flag is set
+	if *mfa {
+		opts.AssumeRoleTokenProvider = stscreds.StdinTokenProvider
 	}
 
 	sess, err := session.NewSessionWithOptions(opts)
