@@ -32,6 +32,14 @@ To run jobs in parallel, use -clients parameter:
 
     sqsmv -src https://region.queue.amazonaws.com/123/queue-a -dest https://region.queue.amazonaws.com/123/queue-b -clients 8
 
+To use AWS multifactor authentication, use the -mfa flag like so:
+    sqsmv -src https://region.queue.amazonaws.com/123/queue-a -dest https://region.queue.amazonaws.com/123/queue-b -mfa
+
+    Make sure you have the mfa_serial added to your AWS profile configuration before running. For more information, see the
+    documentation here: https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-role.html#cli-configure-role-mfa
+
+    NOTE: This MFA flag only supports MFA with a token provider (such as Google Authenticator, Duo, etc)
+
 ## Seeing is believing :)
 
 Create some SQS messages to play with using the AWS CLI.
