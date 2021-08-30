@@ -5,10 +5,6 @@ Move all messages from one SQS queue, to another.
 
 ## Installation
 
-### Source
-
-    go get github.com/cadams8238/sqsmv
-
 
 ## Configuration
 
