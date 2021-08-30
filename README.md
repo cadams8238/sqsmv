@@ -7,18 +7,12 @@ Move all messages from one SQS queue, to another.
 
 ### Source
 
-    go get github.com/scottjbarr/sqsmv
-
-
-### Binaries
-
-Download the appropriate binary from the
-[Releases](https://github.com/scottjbarr/sqsmv/releases) page.
+    go get github.com/cadams8238/sqsmv
 
 
 ## Configuration
 
-The `AWS_SECRET_ACCESS_KEY`, `AWS_ACCESS_KEY_ID`, and ,`AWS_REGION`
+The `AWS_SECRET_ACCESS_KEY` + `AWS_ACCESS_KEY_ID` -OR- `AWS_PROFILE`, and `AWS_REGION`
 environment variables must be set.
 
 
